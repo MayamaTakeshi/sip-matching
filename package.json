@@ -1,0 +1,26 @@
+{
+  "name": "sip-matching",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "MayamaTakeshi",
+  "repository": "https://MayamaTakeshi@github.com/MayamaTakeshi/sip-matching",
+  "license": "MIT",
+  "dependencies": {
+    "data-matching": "^1.16.0",
+    "sip-parsing": "^1.0.2"
+  },
+  "scripts": {
+    "test": "jest --verbose ./tests"
+  },
+  "keywords": [
+    "sip",
+    "matching",
+    "opensips",
+    "kamailio",
+    "openser",
+    "syntax"
+  ],
+  "devDependencies": {
+    "jest": "^24.8.0"
+  }
+}
