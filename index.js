@@ -3,7 +3,7 @@ const data_matching = require('data-matching')
 const sip_parsing = require('sip-parsing')
 const _ = require('lodash')
 
-const matcher = (expected) => {
+module.exports = (expected) => {
 	var expected2 = data_matching.matchify_strings(expected)
 	var f = (s, dict, throw_matching_error, path) => {
 		var received = sip_parsing.parse(s)
@@ -22,8 +22,3 @@ const matcher = (expected) => {
 	f.__name__ = 'sip_msg'
 	return f
 }
-
-module.exports = {
-	matcher: matcher,
-}
-

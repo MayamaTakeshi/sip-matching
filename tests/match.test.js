@@ -1,4 +1,4 @@
-var sm = require('../index.js')
+var sip_msg = require('../index.js')
 var dm = require('data-matching')
 
 test('matched', () => {
@@ -22,9 +22,7 @@ a=sendrecv`
 
 	s = s.replace(/\n/g, "\r\n")
 
-	var p = sm.matcher(s)
-
-	var matcher = sm.matcher({
+	var matcher = sip_msg({
 		$fU: 'alice',
 		$ua: 'SomeUA',
 		'$hdr(Accept)': dm.absent,
