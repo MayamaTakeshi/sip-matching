@@ -1,12 +1,12 @@
 {
   "name": "sip-matching",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "main": "index.js",
   "author": "MayamaTakeshi",
   "repository": "https://MayamaTakeshi@github.com/MayamaTakeshi/sip-matching",
   "license": "MIT",
   "dependencies": {
-    "data-matching": "^1.16.0",
+    "data-matching": "^1.18.0",
     "sip-parsing": "^1.0.2"
   },
   "scripts": {
