@@ -1,6 +1,6 @@
 {
   "name": "sip-matching",
-  "version": "1.3.6",
+  "version": "1.3.7",
   "main": "index.js",
   "author": "MayamaTakeshi",
   "repository": "https://MayamaTakeshi@github.com/MayamaTakeshi/sip-matching",
@@ -8,7 +8,7 @@
   "dependencies": {
     "data-matching": "^1.23.1",
     "kind-of": "^6.0.3",
-    "sip-parsing": "^1.0.7"
+    "sip-parsing": "^1.1.1"
   },
   "scripts": {
     "test": "jest --verbose ./tests"
