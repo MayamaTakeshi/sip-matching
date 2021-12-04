@@ -1,6 +1,6 @@
 {
   "name": "sip-matching",
-  "version": "1.3.12",
+  "version": "1.3.13",
   "main": "index.js",
   "author": "MayamaTakeshi",
   "repository": "https://MayamaTakeshi@github.com/MayamaTakeshi/sip-matching",
@@ -9,7 +9,8 @@
     "data-matching": "^1.23.5",
     "ini": "^2.0.0",
     "kind-of": "^6.0.3",
-    "sip-parsing": "^1.1.6"
+    "sip-parsing": "^1.1.6",
+    "tmpl": "^1.0.5"
   },
   "scripts": {
     "test": "jest --verbose ./tests"
