@@ -1,5 +1,5 @@
 var sip_msg = require('../index.js')
-var dm = require('data-matching')
+var m = require('data-matching')
 
 test('matched', () => {
 	var s = `INVITE sip:bob@biloxi.com SIP/2.0
@@ -12,6 +12,7 @@ Call-ID: a84b4c76e66710
 CSeq: 314159 INVITE
 USER-AGENT: SomeUA
 Contact: <sip:alice@pc33.atlanta.com>
+P-Some-Fake-Header: blabla
 Content-Type: application/sdp
 cONTENT-lENGTH: 142
 
@@ -25,11 +26,24 @@ a=sendrecv`
 	var matcher = sip_msg({
 		$fU: 'alice',
 		$ua: 'SomeUA',
-		'$hdr(Accept)': dm.absent,
-		'$hdr(max-forwards)': '70',
-		'$(hdrcnt(v))': 2,
+
 		$fu: 'sip:!{user1}@!{domain1}',
 		$tu: 'sip:!{user2}@!{domain2}',
+
+		'$hdr(Accept)': m.absent,
+        hdr_accept: m.absent,
+
+		'$hdr(max-forwards)': '70',
+        hdr_Max_Forwards: '70',
+
+		'$(hdrcnt(v))': 2,
+
+        '$hdr(content-length)': '142',
+        hdr_CONTENT_length: '142',
+        hdr_l: '142',
+
+        '$hdr(P-Some-Fake-Header)': 'blabla',
+        hdr_P_some_FAKE_header: 'blabla',
 	})
 
 	var store = {}
