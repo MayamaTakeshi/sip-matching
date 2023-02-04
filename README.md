@@ -37,8 +37,8 @@ var matcher = sm.matcher({
 	'$hdr(Accept)': dm.absent,
 	'$hdr(max-forwards)': '70',
 	'$(hdrcnt(v))': 2,
-	$fu: s('sip:!{user1}@!{domain1}'),
-	$tu: s('sip:!{user2}@!{domain2}'),
+	$fu: 'sip:!{user1}@!{domain1}',
+	$tu: 'sip:!{user2}@!{domain2}',
 	'$hdr(call-id)': dm.collect('call_id'),
 })
 
