@@ -1,6 +1,5 @@
 const sip_msg = require('../index.js')
 const m = require('data-matching')
-const s = require('string-matching').gen_matcher
 
 test('matched', () => {
 	var msg = `INVITE sip:bob@biloxi.com SIP/2.0
@@ -28,8 +27,8 @@ a=sendrecv`
 		$fU: 'alice',
 		$ua: 'SomeUA',
 
-		$fu: s('sip:!{user1}@!{domain1}'),
-		$tu: s('sip:!{user2}@!{domain2}'),
+		$fu: 'sip:!{user1}@!{domain1}',
+		$tu: 'sip:!{user2}@!{domain2}',
 
 		'$hdr(Accept)': m.absent,
         hdr_accept: m.absent,
