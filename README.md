@@ -3,9 +3,8 @@ Permits to match and collect data from SIP messages using opensips/kamailio/open
 
 Example:
 ```
-const sm = require('sip-matching')
+const sip_matching = require('sip-matching')
 const dm = require('data-matching')
-const s = require('string-matching').gen_matcher
 const assert = require('assert')
 
 
@@ -29,9 +28,7 @@ a=sendrecv`
 
 msg = msg.replace(/\n/g, "\r\n")
 
-var p = sm.matcher(msg)
-
-var matcher = sm.matcher({
+var matcher = sip_matching({
 	$fU: 'alice',
 	$ua: 'SomeUA',
 	'$hdr(Accept)': dm.absent,
@@ -51,4 +48,6 @@ assert(store.domain1 == 'atlanta.com')
 assert(store.user2 == 'bob')
 assert(store.domain2 == 'biloxi.com')
 assert(store.call_id == 'a84b4c76e66710')
+
+console.log("success")
 ```
