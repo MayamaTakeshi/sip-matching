@@ -1,8 +1,9 @@
-var sip_msg = require('../index.js')
-var m = require('data-matching')
+const sip_msg = require('../index.js')
+const m = require('data-matching')
+const s = require('string-matching').gen_matcher
 
 test('matched', () => {
-	var s = `INVITE sip:bob@biloxi.com SIP/2.0
+	var msg = `INVITE sip:bob@biloxi.com SIP/2.0
 Via: SIP/2.0/UDP bigbox3.site3.atlanta.com;branch=z9hG4bK77ef4c2312983.1
 Via: SIP/2.0/UDP pc33.atlanta.com;branch=z9hG4bKnashds8;received=192.0.2.1
 Max-Forwards: 70
@@ -21,14 +22,14 @@ o=root 123 456 IN IP4 1.2.3.4
 a=rtpmap:0 pcmu/8000
 a=sendrecv`
 
-	s = s.replace(/\n/g, "\r\n")
+	msg = msg.replace(/\n/g, "\r\n")
 
-	var matcher = sip_msg({
+	const matcher = sip_msg({
 		$fU: 'alice',
 		$ua: 'SomeUA',
 
-		$fu: 'sip:!{user1}@!{domain1}',
-		$tu: 'sip:!{user2}@!{domain2}',
+		$fu: s('sip:!{user1}@!{domain1}'),
+		$tu: s('sip:!{user2}@!{domain2}'),
 
 		'$hdr(Accept)': m.absent,
         hdr_accept: m.absent,
@@ -46,9 +47,9 @@ a=sendrecv`
         hdr_P_some_FAKE_header: 'blabla',
 	})
 
-	var store = {}
+	const store = {}
 
-	expect(matcher(s, store, false, '')).toBe(true)
+	expect(matcher(msg, store, false, '')).toBe(true)
 
 	expect(store.user1).toBe('alice')
 	expect(store.domain1).toBe('atlanta.com')

@@ -5,7 +5,9 @@ Example:
 ```
 const sm = require('sip-matching')
 const dm = require('data-matching')
+const s = require('string-matching').gen_matcher
 const assert = require('assert')
+
 
 var s = `INVITE sip:bob@biloxi.com SIP/2.0
 Via: SIP/2.0/UDP bigbox3.site3.atlanta.com;branch=z9hG4bK77ef4c2312983.1
@@ -35,8 +37,8 @@ var matcher = sm.matcher({
 	'$hdr(Accept)': dm.absent,
 	'$hdr(max-forwards)': '70',
 	'$(hdrcnt(v))': 2,
-	$fu: 'sip:!{user1}@!{domain1}',
-	$tu: 'sip:!{user2}@!{domain2}',
+	$fu: s('sip:!{user1}@!{domain1}'),
+	$tu: s('sip:!{user2}@!{domain2}'),
 	'$hdr(call-id)': dm.collect('call_id'),
 })
 
