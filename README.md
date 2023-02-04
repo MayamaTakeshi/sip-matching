@@ -9,7 +9,7 @@ const s = require('string-matching').gen_matcher
 const assert = require('assert')
 
 
-var s = `INVITE sip:bob@biloxi.com SIP/2.0
+var msg = `INVITE sip:bob@biloxi.com SIP/2.0
 Via: SIP/2.0/UDP bigbox3.site3.atlanta.com;branch=z9hG4bK77ef4c2312983.1
 Via: SIP/2.0/UDP pc33.atlanta.com;branch=z9hG4bKnashds8;received=192.0.2.1
 Max-Forwards: 70
@@ -27,9 +27,9 @@ o=root 123 456 IN IP4 1.2.3.4
 a=rtpmap:0 pcmu/8000
 a=sendrecv`
 
-s = s.replace(/\n/g, "\r\n")
+msg = msg.replace(/\n/g, "\r\n")
 
-var p = sm.matcher(s)
+var p = sm.matcher(msg)
 
 var matcher = sm.matcher({
 	$fU: 'alice',
@@ -44,7 +44,7 @@ var matcher = sm.matcher({
 
 var store = {}
 
-assert(matcher(s, store, false, '') == true)
+assert(matcher(msg, store, false, '') == true)
 
 assert(store.user1 == 'alice')
 assert(store.domain1 == 'atlanta.com')
