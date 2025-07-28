@@ -2,7 +2,7 @@ const sip_msg = require('../index.js')
 const m = require('data-matching')
 
 test('matched', () => {
-	var msg = `INVITE sip:bob@biloxi.com SIP/2.0
+  var msg = `INVITE sip:bob@biloxi.com SIP/2.0
 Via: SIP/2.0/UDP bigbox3.site3.atlanta.com;branch=z9hG4bK77ef4c2312983.1
 Via: SIP/2.0/UDP pc33.atlanta.com;branch=z9hG4bKnashds8;received=192.0.2.1
 Max-Forwards: 70
@@ -18,42 +18,44 @@ cONTENT-lENGTH: 142
 
 v=0
 o=root 123 456 IN IP4 1.2.3.4
-a=rtpmap:0 pcmu/8000
-a=sendrecv`
+a=sendrecv
+a=rtpmap:0 pcmu/8000`
 
-	msg = msg.replace(/\n/g, "\r\n")
+  msg = msg.replace(/\n/g, "\r\n")
 
-	const matcher = sip_msg({
-		$fU: 'alice',
-		$ua: 'SomeUA',
+  const matcher = sip_msg({
+    $fU: 'alice',
+    $ua: 'SomeUA',
 
-		$fu: 'sip:!{user1}@!{domain1}',
-		$tu: 'sip:!{user2}@!{domain2}',
+    $fu: 'sip:!{user1}@!{domain1}',
+    $tu: 'sip:!{user2}@!{domain2}',
 
-		'$hdr(Accept)': m.absent,
-        hdr_accept: m.absent,
+    '$hdr(Accept)': m.absent,
+    hdr_accept: m.absent,
 
-		'$hdr(max-forwards)': '70',
-        hdr_Max_Forwards: '70',
+    '$hdr(max-forwards)': '70',
+    hdr_Max_Forwards: '70',
 
-		'$(hdrcnt(v))': 2,
+    '$(hdrcnt(v))': 2,
 
-        '$hdr(content-length)': '142',
-        hdr_CONTENT_length: '142',
-        hdr_l: '142',
+    '$hdr(content-length)': '142',
+    hdr_CONTENT_length: '142',
+    hdr_l: '142',
 
-        '$hdr(P-Some-Fake-Header)': 'blabla',
-        hdr_P_some_FAKE_header: 'blabla',
-	})
+    '$hdr(P-Some-Fake-Header)': 'blabla',
+    hdr_P_some_FAKE_header: 'blabla',
 
-	const store = {}
+    $rb: '!{_}a=sendrecv!{_}',
+  })
 
-	expect(matcher(msg, store, false, '')).toBe(true)
+  const store = {}
 
-	expect(store.user1).toBe('alice')
-	expect(store.domain1).toBe('atlanta.com')
-	expect(store.user2).toBe('bob')
-	expect(store.domain2).toBe('biloxi.com')
+  expect(matcher(msg, store, false, '')).toBe(true)
+
+  expect(store.user1).toBe('alice')
+  expect(store.domain1).toBe('atlanta.com')
+  expect(store.user2).toBe('bob')
+  expect(store.domain2).toBe('biloxi.com')
 })
 
 
