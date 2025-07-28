@@ -6,7 +6,7 @@
   "repository": "https://MayamaTakeshi@github.com/MayamaTakeshi/sip-matching",
   "license": "MIT",
   "dependencies": {
-    "data-matching": "^1.43.0",
+    "data-matching": "^1.44.0",
     "ini": "^2.0.0",
     "kind-of": "^6.0.3",
     "sip-parsing": "^1.5.9",
